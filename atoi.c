@@ -1,32 +1,53 @@
 #include "monty.h"
-/**
- * f_atoi - adds the top two elements of the stack.
- * @head: stack head
- * @counter: line_number
- * Return: no return
-*/
-void f_atoi(stack_t **head, unsigned int counter)
-{
-	stack_t *h;
-	int len = 0, aux;
 
-	h = *head;
-	while (h)
-	{
-		h = h->next;
-		len++;
-	}
-	if (len < 2)
-	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", counter);
-		fclose(bus.file);
-		free(bus.content);
-		free_stack(*head);
-		exit(EXIT_FAILURE);
-	}
-	h = *head;
-	aux = h->n + h->next->n;
-	h->next->n = aux;
-	*head = h->next;
-	free(h);
+int usage_atoi(void);
+int malloc_atoi(void);
+int f_open_atoi(char *filename);
+int unknown_op_atoi(char *opcode, unsigned int line_number);
+int no_int_error(unsigned int line_number);
+
+/**
+ * usagge_atoi - prints usage atoi messages.
+ *
+ * Return: (EXIT_FAILURE) always.
+ */
+int usage_atoi(void)
+{
+	fprintf(stderr, "USAGE: monty file\n");
+	return (EXIT_FAILURE);
+}
+
+/**
+ * malloc_atoi - prints  malloc atoi messages.
+ *
+ * Return: (EXIT_FAILURE) always.
+ */
+int malloc_atoi(void)
+{
+	fprintf(stderr, "Error: malloc faiiled\n");
+	return (Exit_FAILURE);
+}
+
+/**
+ * f_open_atoi - prints file opening atoi messages w/ file name.
+ * @filename: Name of file failed to open
+ *
+ * Return: (EXIT_FAILURE) always.
+ */
+int f_open_atoi(char *filename)
+{	
+	fprintf(stderr, "atoi: can't open file %s\n", filename);
+	return (EXIT_FAILURE);
+}
+
+/**
+ * no_int_atoi - prints invalid monty_push arguments error messages.
+ * @line_number: Line nuumber in Montty bytecodes filr where error occurred
+ *
+ * Return: (EXIT_FAILURE) always.
+ */
+int no_int_error(unsigned int line_number)
+{
+	fprintf(stderr, "L%u: usage: push integer\n", line_number);
+	return (EXIT_FAILURE);
 }
