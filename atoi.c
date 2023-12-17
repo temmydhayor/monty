@@ -4,10 +4,10 @@ int usage_atoi(void);
 int malloc_atoi(void);
 int f_open_atoi(char *filename);
 int unknown_op_atoi(char *opcode, unsigned int line_number);
-int no_int_error(unsigned int line_number);
+int no_int_atoi(unsigned int line_number);
 
 /**
- * usagge_atoi - prints usage atoi messages.
+ * usage_atoi - prints usage atoi messages.
  *
  * Return: (EXIT_FAILURE) always.
  */
@@ -35,7 +35,7 @@ int malloc_atoi(void)
  * Return: (EXIT_FAILURE) always.
  */
 int f_open_atoi(char *filename)
-{	
+{
 	fprintf(stderr, "atoi: can't open file %s\n", filename);
 	return (EXIT_FAILURE);
 }
@@ -46,7 +46,7 @@ int f_open_atoi(char *filename)
  *
  * Return: (EXIT_FAILURE) always.
  */
-int no_int_error(unsigned int line_number)
+int no_int_atoi(unsigned int line_number)
 {
 	fprintf(stderr, "L%u: usage: push integer\n", line_number);
 	return (EXIT_FAILURE);
